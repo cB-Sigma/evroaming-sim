@@ -1,0 +1,60 @@
+evroaming-sim (simulated OCPI 2.2.1, OICP 2.3 and OSCP 2.0 partners, in Go)
+Copyright 2026 Abhinav Gautam
+
+This module is licensed under the Apache License, Version 2.0 (LICENSE).
+
+The code was written for SigmaM2M, a oneM2M platform, from the
+documents listed in PROVENANCE.md. It contains no code from other
+projects. The simulator files that come from SigmaM2M
+(sim/ocpisim/ocpisim.go, sim/oicpsim/oicpsim.go, sim/oicpsim/pki.go,
+sim/oscpsim/oscpsim.go) carry no per-file copyright header, the
+convention of the code they come from; the copyright line above covers
+them. Files added for this module carry "Copyright 2026 Abhinav Gautam"
+and "SPDX-License-Identifier: Apache-2.0".
+
+Trademarks
+----------
+
+OCPI is a protocol of the EVRoaming Foundation; OICP and Hubject are
+trademarks of Hubject GmbH; OSCP is a protocol of the Open Charge
+Alliance. This module is not made, endorsed, certified or supported by
+any of them and is not affiliated with them; the names are used only to
+say which protocols it simulates. oicpsim is a test double, not
+Hubject's service; its host names end in .test.
+
+Specifications
+--------------
+
+No specification text is reproduced. The OCPI 2.2.1 (CC BY-ND 4.0),
+OICP 2.3 (CC BY-SA 4.0) and OSCP 2.0 (CC BY-ND 4.0) documents are used
+for facts only, through the evroaming module. The OSCP schemas the
+simulator validates with are those embedded, unmodified, in evroaming
+(CC BY-ND 4.0, Open Charge Alliance; see that module's NOTICE).
+
+Interop tests (interop/, a separate test-only module)
+-----------------------------------------------------
+
+interop/peer/Dockerfile installs extrawest-ocpi 2025.7.16 (MIT,
+Copyright (c) 2023 Extrawest, github.com/extrawest/extrawest_ocpi; it
+depends on FastAPI, httpx and pydantic, all MIT or BSD-3-Clause) and
+uvicorn 0.30.6 (BSD-3-Clause) from PyPI into a python:3.11.9-slim image
+at test time; nothing of them is copied into this repository.
+interop/peer/app.py is our own script that runs that package.
+
+Dependencies
+------------
+
+- github.com/cB-Sigma/evroaming (Copyright 2026 Abhinav Gautam,
+  Apache-2.0, with the OCA schemas under CC BY-ND 4.0) and through it
+  github.com/cB-Sigma/jsonschema (Apache-2.0),
+  github.com/santhosh-tekuri/jsonschema/v6 (Apache-2.0, Copyright
+  Santhosh Kumar Tekuri), golang.org/x/text and golang.org/x/net
+  (BSD-3-Clause, Copyright The Go Authors).
+- The Go standard library (BSD-3-Clause, Copyright The Go Authors).
+
+Test data
+---------
+
+Every token, party ID, operator ID, EVSE ID and contract ID is a
+made-up demo value. Every certificate and key (oicpsim's PKI) is made
+at run time and never stored in the repository.
